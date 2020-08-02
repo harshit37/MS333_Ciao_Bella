@@ -47,4 +47,5 @@ class Evaluate () :
 if __name__ == "__main__":
     obj = Evaluate()
     
-    print(obj.from_path("1.jpg"))
+    for i in obj.from_path("1.jpg"):
+        print(i)
