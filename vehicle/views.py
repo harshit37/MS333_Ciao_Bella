@@ -144,6 +144,7 @@ def querybyimage(request):
     print(request)
     major_colors = []
     plate_numbers = []
+    logos = []
     if request.method == 'POST' and request.FILES['filename']:
         print("HO HO HO")
         myfile = request.FILES['filename']
@@ -177,12 +178,22 @@ def querybyimage(request):
                             y = y + str(item)
                         print(y)
                         plate_numbers.append(y)
-                        major_colors.append(maj_color)    
+                        major_colors.append(maj_color)
+                        opt = optimi()
+                        opt.source = path
+                        with torch.no_grad():
+                            if opt.update:  # update all models (to fix SourceChangeWarning)
+                                for opt.weights in ['yolov5s.pt', 'yolov5m.pt', 'yolov5l.pt', 'yolov5x.pt']:
+                                    brand_logo = detect(opt, save_img=False)
+                                    strip_optimizer(opt.weights)
+                            else:
+                                brand_logo = detect(opt, save_img=False)
+                        logos.append(brand_logo)    
                 except Exception as e:
                     print(e)
         except Exception as e:
                 print(e)
-    context = {"major_colors": major_colors, "number_plates": plate_numbers}
+    context = {"major_colors": major_colors, "number_plates": plate_numbers, "logos" : logos}
     return render(request, "vehicle/tempo.html", context)
 
 
