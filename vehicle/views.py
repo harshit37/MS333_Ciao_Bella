@@ -105,6 +105,7 @@ def querybyform(request):
 
     context = {}
     images_path = []
+    images_timestamp = []
     print(request.POST)
     if(request.method == "POST"):
         if(request.POST['car_plate'] is ""):
@@ -112,19 +113,22 @@ def querybyform(request):
             for i in q:
                 image_path = i.Imagename
                 images_path.append('frames/' + str(image_path))
+                images_timestamp.append(i.VideoTimeStamp)
         else:
             q = CarSurveillance.objects.filter(PlateNumber = request.POST['car_plate'])
             for i in q:
                 image_path = i.Imagename
                 images_path.append('frames/' + str(image_path))
+                images_timestamp.append(i.VideoTimeStamp)
 
     context['images_path'] = images_path
+    context['images_timestamp'] = images_timestamp
     print(images_path)
     return render(request, "vehicle/submitted.html", context)
 
 
 def video_player(request):
-    return(request, "vehicle/video_player.html")    
+    return render(request, "vehicle/video_player.html")    
 
 # if __name__ == "__main__":
 #     img_path = "src/test_images/Indian_vehicles/0.png"
