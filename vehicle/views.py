@@ -123,7 +123,8 @@ def querybyform(request):
     return render(request, "vehicle/submitted.html", context)
 
 
-
+def video_player(request):
+    return(request, "vehicle/video_player.html")    
 
 # if __name__ == "__main__":
 #     img_path = "src/test_images/Indian_vehicles/0.png"
