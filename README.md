@@ -1,9 +1,13 @@
-# MS333_Ciao_Bella
-Vehicle Recognition and compilation in database
+# SIH-2020
+
+Our solution for SIH-2020
+
+Install dependencies using :-
+pip install -r requirements.txt
+
+To run the server on your local machine run the following on your terminal
+python manage.py runserver 
 
 
-Day-1
 
-11:00 am :- > started working on extracting frames out of video</br>
-Developing models for color and licence plate detection from cropped vehicles
-
+[Website link](https://bella-ciao.herokuapp.com/)
