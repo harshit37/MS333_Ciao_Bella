@@ -30,12 +30,13 @@
             <li><a href="#">Feedback</a></li>
         </ul>
     </nav>
-
     <div class="carousel_container">
         <i class="fa fa-arrow-left" aria-hidden="true" id="prevbtn" onclick=plusDivs(-1)></i>
         <i class="fa fa-arrow-right" aria-hidden="true" id="nextbtn" onclick=plusDivs(1)></i>
         <div class="carousel_slide">
-            <img src="./images/1.jpg" alt="">
+            {% for image_path in images_path %}
+                <img src="{% static image_path %}"/>
+            {% endfor %}
             <img src="./images/2.jpg" alt="">
             <img src="./images/3.jpg" alt="">
             <img src="./images/4.jpg" alt="">
@@ -43,7 +44,7 @@
             <img src="./images/6.jpg" alt="">
             <img src="./images/7.jpg" alt="">
             <img src="./images/8.jpg" alt="">
-            <img src="./images/9.jpg" alt="">
+            <img src="./images/9.jpg" alt=""> -->
         </div>
     </div>
 
