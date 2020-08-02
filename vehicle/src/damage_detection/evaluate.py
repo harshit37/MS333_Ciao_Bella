@@ -46,6 +46,37 @@ class Evaluate () :
 
 if __name__ == "__main__":
     obj = Evaluate()
+    image_list=[]
+    load_img=cv2.imread("1.jpg")
     
+    cntr=0
+    f_h=int(load_img.shape[0]/128)
+    f_w=int(load_img.shape[1]/128)
     for i in obj.from_path("1.jpg"):
-        print(i)
+        row=[]
+        cntc=0
+        for j in i:
+            if j==1:
+                row.append(255)
+                load_img[int(cntr*f_h),int(cntc*f_w)] = [0,255,0]
+
+            else:
+                row.append(j)
+
+            cntc+=1
+
+        image_list.append(row)
+        cntr+=1
+                
+    img=np.array(image_list,dtype=object)
+
+   
+    print(img)
+    img2=np.uint8(img)
+
+    #img2= tf.image.resize(img2,[desired_h,desired_w])
+    print(img2.shape)
+    print(load_img.shape)
+    cv2.imshow("dent_image",img2) 
+    cv2.imshow("actual_image",load_img)
+    cv2.waitKey()        
