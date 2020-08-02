@@ -10,10 +10,15 @@ from vehicle.src.alpr.vehicle_detection import extract_car
 from vehicle.src.alpr.license_plate_detection import extract_lp
 from vehicle.src.alpr.ocr2 import read_plate
 from vehicle.src.color_identifier import color_segmenter
+from vehicle.src.alpr.correct import accomodate
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from vehicle.yolov5.detect import *
+from vehicle.src.alpr import *
+import logging
+logger = logging.getLogger(__name__)
 
+# Put the logging info within your django view
 
 
 
@@ -70,10 +75,16 @@ def save_to_database(request):
     #             strip_optimizer(opt.weights)
     #     else:
     #         detect(opt, save_img=True)
+    print("SFD")
+    logger.info("HI HI HI ")
     return render(request, "vehicle/homeLogin.html")
 
 
-def queryfromimage(request):
+def testingpage(request):
+    print("HI ")
+    return render(request, "vehicle/testingpage.html")
+
+def savetodatabase(request):
 
     print("Mohit Singhal")
     print(request)
@@ -95,8 +106,87 @@ def queryfromimage(request):
             x =  (read_plate(lp))
             print(x)
             context = {"major_color": maj_color, "number_plate": x}
+        try:
+            frame = cv2.imread(path)
+            vehicles, img = extract_car(frame)
+            for i in vehicles:
+                try:
+                    maj_color=color_segmenter(i)
+                    print(maj_color)
+                    lp = extract_lp(i)
+                    x =  (read_plate(lp))
+                    if( x is not None):
+                        x = x.replace(".", "")
+                        x = x.replace("-", "")
+                        x = x.replace("_", "")
+                        x = x.replace("{", "")
+                        x = x.replace("(", "")
+                        x = x.replace(")", "")
+                        x = x.replace("|", "")
+                        x = x.replace('"', "")
+                        x = x.replace("}", "")
+                        x = accomodate(list(x))
+                        y = ""
+                        for item in x:
+                            y = y + str(item)
+                        print(y)
+                except Exception as e:
+                    print(e)
+        except Exception as e:
+                print(e)
 
     return render(request, "vehicle/submitted.html", context)
+
+
+def querybyimage(request):
+
+    print("Mohit Singhal")
+    print(request)
+    major_colors = []
+    plate_numbers = []
+    if request.method == 'POST' and request.FILES['filename']:
+        print("HO HO HO")
+        myfile = request.FILES['filename']
+        print(myfile.name)
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+
+        path = "media/" + myfile.name
+        try:
+            frame = cv2.imread(path)
+            vehicles, img = extract_car(frame)
+            for i in vehicles:
+                try:
+                    maj_color=color_segmenter(i)
+                    print(maj_color)
+                    lp = extract_lp(i)
+                    x =  (read_plate(lp))
+                    if( x is not None):
+                        x = x.replace(".", "")
+                        x = x.replace("-", "")
+                        x = x.replace("_", "")
+                        x = x.replace("{", "")
+                        x = x.replace("(", "")
+                        x = x.replace(")", "")
+                        x = x.replace("|", "")
+                        x = x.replace('"', "")
+                        x = x.replace("}", "")
+                        x = accomodate(list(x))
+                        y = ""
+                        for item in x:
+                            y = y + str(item)
+                        print(y)
+                        plate_numbers.append(y)
+                        major_colors.append(maj_color)    
+                except Exception as e:
+                    print(e)
+        except Exception as e:
+                print(e)
+    context = {"major_colors": major_colors, "number_plates": plate_numbers}
+    return render(request, "vehicle/tempo.html", context)
+
+
+
 
 def querybyform(request):
 
@@ -108,7 +198,7 @@ def querybyform(request):
     images_timestamp = []
     print(request.POST)
     if(request.method == "POST"):
-        if(request.POST['car_plate'] is ""):
+        if(request.POST['car_plate'] == ""):
             q = CarSurveillance.objects.all()
             for i in q:
                 image_path = i.Imagename
