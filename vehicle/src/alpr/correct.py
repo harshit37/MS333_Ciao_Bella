@@ -1,6 +1,8 @@
-
-
-def jugaad(plate):
+def accomodate(plate):
+    i=0
+    while not(plate[i].isalnum()):
+        i=i+1
+    plate = plate[i:]
     if(plate[0]=="q"):
         plate = plate[1:]
     length_plt = len(plate)
@@ -22,13 +24,15 @@ def jugaad(plate):
         plate[2] = '0'
     elif(plate[2]=='B' or plate[2]=='R'):
         plate[2] = "8"
+    elif(plate[2]=='!'):
+        plate[2] = '1'
        # print(district[2])
     if(plate[3]=='S'):
         plate[3] = '5'
     elif(plate[3]=="O"):
         plate[3] = 0
     elif(plate[3]=='B' or plate[3]=='R'):
-        plate[3] = '8'  
+        plate[3] = '8'
     for i in range(length_plt-8):
         if(plate[i+4]=="2"):
             plate[i+4] = "Z"
@@ -48,3 +52,4 @@ def jugaad(plate):
         elif(plate[length_plt-4+i]=='B' or plate[length_plt-4+i]=='R'):
             plate[length_plt-4+i] = "8"
     return plate
+

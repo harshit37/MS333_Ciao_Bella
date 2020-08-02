@@ -1,0 +1,404 @@
+body {
+    background-color: white;
+    text-align: centre;
+    margin: 0px;
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 400;
+    color: white;
+}
+
+.background_image {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url("https://media2.giphy.com/media/eiqUklNKmONPtpteIA/giphy.gif");
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    z-index: -1;
+}
+
+nav {
+    height: 18%;
+    width: 100%;
+}
+
+label.logo {
+    color: white;
+    font-size: 2vw;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 1%;
+}
+
+nav ul {
+    float: right;
+    margin-right: 2%;
+}
+
+nav ul li {
+    display: inline-block;
+    line-height: 500%;
+    margin: 0vw;
+    font-weight: bold;
+}
+
+nav ul li i {
+    margin-left: 1.7vw;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 1.3vw;
+    text-transform: uppercase;
+    padding: 1vh 1vw 1vh 1vw;
+}
+
+nav ul li a:hover {
+    font-size: 1.4vw;
+    color: #12cad6;
+}
+
+
+#data_submit {
+    color: #fff48f;
+    text-decoration: underline;
+}
+
+.top_container {
+    text-align: center;
+    word-spacing: 5;
+    color: white;
+    left: 50%;
+    top: 24%;
+    font-weight: bold;
+    transform: translate(-50%, -30%); 
+    position: absolute;    
+    width: 50%;
+}
+
+.top_container h1 {
+    font-weight: 800;
+    font-size: 5.6vw;
+    color: blue;  /*ede682*/
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
+.top_container p {
+    font-size: 1.5vw;
+}
+
+.middle_container {
+    top: 44%;
+    right: 10%;
+    text-align: center;
+    width: 80vw;
+    margin-left: 30vw;
+    position: absolute;
+}
+
+.middle_container h1 {
+    font-size: 2.2vw;
+    color: red;
+    font-weight: 600;
+}
+
+.middle_container .query {
+    padding: 3%;
+    margin-top: 1%;
+}
+
+.middle_container .query button {
+    margin-right: 1%;
+    margin-left: 1%;
+    color: #383e56;
+    font-weight: 600;
+    background-color: white;
+    font-size: 1.7vw;
+    margin-bottom: 2%;
+}
+
+
+.top {
+    border-top:1px solid;
+    margin: 0;
+    margin-left: 42%;
+    margin-right: 45%;
+    color: white;
+}
+
+.footer-padding {
+    padding-bottom: 0px;
+  }
+  
+  .footer {
+  position: absolute;
+  text-align: center;
+  bottom: 8.2%;
+  width: 100%;
+  height: 60px;
+  }
+  
+  .footer p {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #fbd46d;
+  }
+  
+  
+  .footer ul li {
+    display: inline-block;
+    line-height: 1.8vw;
+    margin: 0%;
+    padding-right: 1%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer ul li a {
+    color: white;
+    font-size: 1.5vw;
+  }
+  
+  .footer ul li a:hover {
+    font-size: 1.6vw;
+    color: turquoise;
+  }
+
+.middle_container .query button:hover {
+    width: 18%;
+    height: 9%;
+    background-color: yellow;
+}
+
+span {
+    font-size: 25px;
+}
+
+.bg-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.upload-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.upload-video {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.upload-image {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal-content {
+    width: 50%;
+    height: 90%;
+    background-color: white;
+    opacity: 1;
+    border-radius: 4px;
+    text-align: center;
+    padding: 2%;
+    color: black;
+    position: relative;
+    font-size: 120%;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-modal-content {
+    width: 50%;
+    height: 90%;
+    background-color: white;
+    opacity: 1;
+    border-radius: 4px;
+    text-align: center;
+    padding: 2%;
+    color: black;
+    position: relative;
+    font-size: 120%;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-video-content {
+    width: 50%;
+    height: 20%;
+    background-color: white;
+    opacity: 1;
+    border-radius: 4px;
+    text-align: center;
+    padding: 2%;
+    color: black;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-image-content {
+    width: 50%;
+    height: 20%;
+    background-color: white;
+    opacity: 1;
+    border-radius: 4px;
+    text-align: center;
+    padding: 2%;
+    color: black;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-image-content button {
+    margin-top: 2%;
+}
+
+.upload-video-content button {
+    margin-top: 2%;
+}
+
+.upload-image-content span {
+    margin-top: 4%;
+}
+
+.upload-video-content span {
+    margin-top: 4%;
+}
+
+.modal-content h1 {
+    font-size: 150%;
+    color: #1f4068;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-top: 8%;
+}
+
+.upload-modal-content h1 {
+    font-size: 150%;
+    color: #1f4068;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-top: 8%;
+}
+
+form {
+    margin-top: 3%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+form input {
+    margin-bottom: 1%;
+    width: 40%;
+    font-size: 1.8vw;
+    align-items: center;
+}
+
+#myvideo {
+    margin-left: 30%;
+}
+
+#myimage {
+    margin-left: 30%;
+}
+
+form .submit_form {
+    margin: 1%;
+    background-color: #fbd46d;
+    color: black;
+    padding: 2%;
+    font-weight: 500;
+    font-size: 100%;
+}
+
+form input:hover {
+    border-color: darkblue;
+    width: 41%;
+    height: 8%;
+}
+
+.submit_form:hover {
+    background-color: black;
+    color: white;
+    width: 41%;
+    height: 10%;
+}
+
+.close {
+    position: absolute;
+    right: 2%;
+    color: gray;
+    font-size: 400%;
+    transform: rotate(45deg);
+    cursor: pointer;
+    top: 0%;
+    opacity: 0.4;
+}
+
+.file_close {
+    position: absolute;
+    right: 2%;
+    color: gray;
+    font-size: 400%;
+    transform: rotate(45deg);
+    cursor: pointer;
+    top: 0%;
+    opacity: 0.4;
+}
+
+.video_close {
+    position: absolute;
+    right: 2%;
+    color: gray;
+    font-size: 400%;
+    transform: rotate(45deg);
+    cursor: pointer;
+    top: 0%;
+    opacity: 0.4;
+}
+
+.image_close {
+    position: absolute;
+    right: 2%;
+    color: gray;
+    font-size: 400%;
+    transform: rotate(45deg);
+    cursor: pointer;
+    top: 0%;
+    opacity: 0.4;
+}
