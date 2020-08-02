@@ -20,6 +20,7 @@ Working on interface<.br>
 To run the server on your local machine run the following on your terminal
 python manage.py runserver 
 
+Completed haze removal,gun in car detection,owner identification from image, partially working interface.
 
 
 [Website link](https://bella-ciao.herokuapp.com/)
