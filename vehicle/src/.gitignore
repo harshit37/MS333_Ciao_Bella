@@ -1,0 +1,5 @@
+alpr/alpr_data/
+test_images/
+test_videos/
+test_output/
+yolov5/weights/

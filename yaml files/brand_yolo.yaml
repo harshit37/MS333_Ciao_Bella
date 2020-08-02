@@ -1,0 +1,5 @@
+train: /content/final_yolo_data/images/train
+val: /content/final_yolo_data/images/validation
+nc: 14
+names: ["Ford","Honda","Hyundai","Kia","Mahindra","Maruti","Audi","Nissan","Tata","Toyota","Volkswagon","Mercedes","Renault","Skoda"]
+random: 1

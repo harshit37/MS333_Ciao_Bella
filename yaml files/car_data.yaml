@@ -1,0 +1,5 @@
+train: /content/car_data/images/train
+val: /content/car_data/images/validation
+nc: 15
+names: ["Ford",  "honda",  "Hyundai",  "kia",  "mahindra",  "maruti", "Audi", "BMW", "Nissan", "Tata", "Toyota", "VolksWagon", "Mercedes", "Renault", "Skoda"]
+random: 1

@@ -25,7 +25,11 @@ def color_segmenter(frame):
 
     ans = ("UNK", 0)
 
+<<<<<<< HEAD
     path = "color-cars/"
+=======
+    path = "color_masks/"
+>>>>>>> 1abb7982a22ee1cccb50c4bf498098b944e34c2d
 
     # red_low=[170,100,50]
     # red_high=[180,255,255]
@@ -48,7 +52,11 @@ def color_segmenter(frame):
             continue
         elif(ad[1][1] > ans[1]):
             ans = (color_names[x], ad[1][1])
+<<<<<<< HEAD
         #cv2.imwrite(path + str(img_name) + "_" + str(color_names[x]) + str(".jpg"), color_mask)
+=======
+        # cv2.imwrite(path + str(img_name) + "_" + str(color_names[x]) + str(".jpg"), color_mask)
+>>>>>>> 1abb7982a22ee1cccb50c4bf498098b944e34c2d
 
     return(ans[0])
 
