@@ -62,14 +62,14 @@ def save_to_database(request):
     #     print(x)
 
     
-    opt = optimi()
-    with torch.no_grad():
-        if opt.update:  # update all models (to fix SourceChangeWarning)
-            for opt.weights in ['yolov5s.pt', 'yolov5m.pt', 'yolov5l.pt', 'yolov5x.pt']:
-                detect(opt, save_img=True)
-                strip_optimizer(opt.weights)
-        else:
-            detect(opt, save_img=True)
+    # opt = optimi()
+    # with torch.no_grad():
+    #     if opt.update:  # update all models (to fix SourceChangeWarning)
+    #         for opt.weights in ['yolov5s.pt', 'yolov5m.pt', 'yolov5l.pt', 'yolov5x.pt']:
+    #             detect(opt, save_img=True)
+    #             strip_optimizer(opt.weights)
+    #     else:
+    #         detect(opt, save_img=True)
     return render(request, "vehicle/homeLogin.html")
 
 
@@ -100,22 +100,31 @@ def queryfromimage(request):
 
 def querybyform(request):
 
+    print("HI")
     print(request.POST)
 
     context = {}
     images_path = []
+    print(request.POST)
     if(request.method == "POST"):
-        q = CarSurveillance.objects.filter(Color = request.POST['car_color'])
-        for i in q:
-            print(i.Brand)
-            print(i.Imagename)
-            print(i.VideoTimeStamp)
-            print(i.Seen)
+        if(request.POST['car_plate'] is ""):
+            q = CarSurveillance.objects.all()
+            for i in q:
+                image_path = i.Imagename
+                images_path.append('frames/' + str(image_path))
+        else:
+            q = CarSurveillance.objects.filter(PlateNumber = request.POST['car_plate'])
+            for i in q:
+                image_path = i.Imagename
+                images_path.append('frames/' + str(image_path))
 
+    context['images_path'] = images_path
+    print(images_path)
     return render(request, "vehicle/submitted.html", context)
 
 
-
+def video_player(request):
+    return(request, "vehicle/video_player.html")    
 
 # if __name__ == "__main__":
 #     img_path = "src/test_images/Indian_vehicles/0.png"
