@@ -81,7 +81,8 @@ def save_to_database(request):
 
 
 def testingpage(request):
-    print("HI ")
+    list = CarRTO.objects.all()
+    print(list)
     return render(request, "vehicle/testingpage.html")
 
 def savetodatabase(request):
