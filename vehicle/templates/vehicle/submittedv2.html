@@ -1,0 +1,152 @@
+{% load static %}
+<html>
+
+<head>
+    <title>SIH 2020</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" type="text/css" href="{% static 'vehicle/submittedv2style.css' %}">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+    <div class="background_image"> </div>
+    <nav>
+        <label class="logo">Vehicle Searchable Database</label>
+        <ul>
+            <li><i class="fa fa-search" aria-hidden="true" type="button" data-toggle="collapse"
+                    data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i></li>
+            <li><button class="btn">TRACKING</button></li>
+            <li><i class="glyphicon glyphicon-user"></i></li>
+            <li><a href="#">Username</a></li>
+            <li><a href="#">Logout</a></li>
+            <li><a href="#">Feedback</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="collapse" id="collapseExample">
+        <div class="card">
+                <label for="plate_number">License Plate Number :</label>
+                <input type="text" id="plate_number" name="car_plate">
+                <label for="owner">Owner :</label>
+                <input type="text" id="owner" name="car_owner">
+                <label for="color">Color :</label>
+                <select name="cars" id="cars">
+                    <option value="Red">Red</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Green">Green</option>
+                    <option value="Black">Black</option>
+                    <option value="Grey">Grey</option>
+                    <option value="White">White</option>
+                </select>
+                <button type="submit" class="btn btn-info">SEARCH</button>
+        </div>
+    </div>
+
+    
+    <div style="display: flex; flex-direction: row; width: 100%;">
+
+        <div class="carousel_container" style="flex: 4;">
+            <i class="fa fa-arrow-left" aria-hidden="true" id="prevbtn" onclick=plusDivs(-1)></i>
+            <i class="fa fa-arrow-right" aria-hidden="true" id="nextbtn" onclick=plusDivs(1)></i>
+            <div class="carousel_slide">
+                <!-- id should be in order as image, video should be named according to image,
+                like- for first image : video name = video1.mp4, for second video2.mp4 and so on. -->
+                {% for image_path in images_path %}
+                    <img src="{% static image_path %}" onclick=playVideo(this) id= "{% static 'videos/'|add:temp_var %}" alt=""/>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="table" style="flex: 5;">
+            <table style="width:100%">
+                <tr>
+                    <th>Color</th>
+                    <th>Plate Number</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                </tr>
+                <!-- A for loop here for rendering data -->
+                {% for text in corpus %}
+                    <p>{{ text }}</p>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <footer class="footer-padding">
+        <div class="footer">
+            <hr class="bottom">
+            <ul>
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+                <li><a href="#"><i class="fa fa-google" aria-hidden="true"></i> Google</a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a></li>
+            </ul>
+            <p>&copy; Ciao_bella 2020</p>
+        </div>
+    </footer>
+
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div class="close">+</div>
+            <video id="video" width=100% height=100% controls>
+                <source type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+    </div>
+
+
+    <script>
+        var slideIndex = 1;
+        var videoEl;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.querySelector(".carousel_slide").querySelectorAll("img");
+            var y = document.querySelector(".table").querySelectorAll("p");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                y[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+            y[slideIndex - 1].style.display = "block"
+        }
+        
+        function playVideo(image) {
+            document.querySelector(".bg-modal").style.display = "flex";
+            videoEl = document.getElementsByTagName('video')[0];
+            var sourceEl = videoEl.getElementsByTagName('source')[0];
+            sourceEl.src = image.getAttribute("id");
+            // sourceEl.src = "video"+ image.getAttribute('id') +".mp4";
+            videoEl.load();
+        }
+
+        document.querySelector(".close").addEventListener("click",
+        function(){
+            document.querySelector(".bg-modal").style.display="none";
+            videoEl.pause();
+        });
+    </script>
+</body>
+
+</html>
