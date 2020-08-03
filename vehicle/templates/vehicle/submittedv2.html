@@ -1,4 +1,5 @@
 {% load static %}
+{% load extras %}
 <html>
 
 <head>
@@ -60,8 +61,8 @@
             <div class="carousel_slide">
                 <!-- id should be in order as image, video should be named according to image,
                 like- for first image : video name = video1.mp4, for second video2.mp4 and so on. -->
-                {% for image_path in images_path %}
-                    <img src="{% static image_path %}" onclick=playVideo(this) id= "{% static 'videos/'|add:temp_var %}" alt=""/>
+                {% for var in list_range %}
+                    <img src="{% static images_path|return_item:var %}" onclick=playVideo(this) id= "{% static videos_path|return_item:var %}" time="10" alt=""/>
                 {% endfor %}
             </div>
         </div>
@@ -138,6 +139,9 @@
             var sourceEl = videoEl.getElementsByTagName('source')[0];
             sourceEl.src = image.getAttribute("id");
             // sourceEl.src = "video"+ image.getAttribute('id') +".mp4";
+            // time = image.getAttribute("time");
+            // videoE1.currentTime = 10;
+            console.log(videoEl.currentTime);
             videoEl.load();
         }
 

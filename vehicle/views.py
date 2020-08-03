@@ -202,9 +202,6 @@ def querybyimage(request):
 
 def querybyform(request):
 
-    print("HI")
-    print(request.POST)
-
     context = {}
     images_path = []
     images_timestamp = []
@@ -217,7 +214,7 @@ def querybyform(request):
                 image_path = i.Imagename
                 images_path.append('frames/' + str(image_path))
                 images_timestamp.append(i.VideoTimeStamp)
-                videos_path.append(str(i.Videoname))
+                videos_path.append('videos/' + str(i.Videoname))
         else:
             q = CarSurveillance.objects.filter(PlateNumber = request.POST['car_plate'])
             for i in q:
