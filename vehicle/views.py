@@ -98,7 +98,7 @@ def savetodatabase(request):
 
         path = "media/" + myfile.name
         frame = cv2.imread(path)
-
+        print(path)
         vehicles, img = extract_car(frame)
         for i in vehicles:
             maj_color=color_segmenter(i)
@@ -202,12 +202,10 @@ def querybyimage(request):
 
 def querybyform(request):
 
-    print("HI")
-    print(request.POST)
-
     context = {}
     images_path = []
     images_timestamp = []
+    videos_path = []
     print(request.POST)
     if(request.method == "POST"):
         if(request.POST['car_plate'] == ""):
@@ -216,6 +214,7 @@ def querybyform(request):
                 image_path = i.Imagename
                 images_path.append('frames/' + str(image_path))
                 images_timestamp.append(i.VideoTimeStamp)
+                videos_path.append('videos/' + str(i.Videoname))
         else:
             q = CarSurveillance.objects.filter(PlateNumber = request.POST['car_plate'])
             for i in q:
@@ -225,8 +224,18 @@ def querybyform(request):
 
     context['images_path'] = images_path
     context['images_timestamp'] = images_timestamp
+    context['videos_path'] = videos_path
+    context['temp_var'] = '1_1.mp4'
     print(images_path)
-    return render(request, "vehicle/submitted.html", context)
+    corpus = []
+    for var in range(len(images_path)):
+        corpus.append(var)
+    context['corpus'] = corpus
+    list_range = []
+    for vr in range(len(images_path)):
+        list_range.append(vr)
+    context['list_range'] = list_range
+    return render(request, "vehicle/submittedv2.html", context)
 
 
 def video_player(request):
