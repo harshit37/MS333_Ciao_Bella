@@ -98,7 +98,7 @@ def savetodatabase(request):
 
         path = "media/" + myfile.name
         frame = cv2.imread(path)
-
+        print(path)
         vehicles, img = extract_car(frame)
         for i in vehicles:
             maj_color=color_segmenter(i)

@@ -99,6 +99,7 @@ def extract_car(frame):
   print(dict_confidence)
   cropped_images = []
 
+  print("HU")
   
   for key in keylist:
     if key=='motorbike':
@@ -111,8 +112,11 @@ def extract_car(frame):
       # x,y 
       cropped_image=image[max(0,y):min(y+h,len(image)),max(0,x):min(x+w,len(image[1]))]
       cropped_images.append(cropped_image)
+      cv2.imwrite("vehicle/src/test_output/bounding_box.jpg", image)
+      cv2.imwrite("vehicle/src/test_output/cropped_image.jpg", cropped_image)
 
-  cv2.imwrite("src/test_output/bounding_box.jpg", image)
+  
+  
 
 
   return cropped_images, img
