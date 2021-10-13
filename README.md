@@ -12,7 +12,7 @@ In parallel Adding django app
 Day-2
 
 Increasing the number of features that we are extracting.</br>
-Working on interface<.br>
+Working on interface
 
 To run the server on your local machine run the following on your terminal
 python manage.py runserver 
