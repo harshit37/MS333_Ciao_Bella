@@ -2,9 +2,6 @@
 
 Our solution for SIH-2020
 
-Install dependencies using :-
-pip install -r requirements.txt
-
 
 11:00 am :- > started working on extracting frames out of video</br>
 Developing models for color and licence plate detection from cropped vehicles</br>
@@ -22,5 +19,3 @@ python manage.py runserver
 
 Completed haze removal,gun in car detection,owner identification from image, partially working interface.
 
-
-[Website link](https://bella-ciao.herokuapp.com/)
